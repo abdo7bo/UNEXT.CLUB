@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNEXT.CLUB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: url('https://via.placeholder.com/1920x1080') no-repeat center center fixed;
+            background-size: cover;
+            background-color: #f4f4f9; /* Fallback color */
+        }
+        .form-container {
+            min-width: 300px;
+            text-align: left; /* Align all content to the left by default */
+        }
+        .welcome-text {
+            font-size: 1.25rem; /* Adjust font size */
+            font-weight: bold;
+            margin-bottom: 1rem; /* Add spacing below the text */
+            color: #333; /* Dark gray color */
+        }
+        .separator-line {
+            border: 1px solid #ddd; /* Light gray line */
+            margin: 0.5rem 0; /* Add spacing between lines */
+        }
+        .translate-section {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 10;
+        }
+        .translate-dropdown {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: white;
+        }
+        .translate-dropdown:hover {
+            background-color: #f1f1f1;
+        }
+        /* Dove Logo Styling */
+        .dove-logo {
+            display: block;
+            margin: 0 auto 1rem auto; /* Center the logo and add space below */
+            width: 60px; /* Adjust logo size */
+            height: auto;
+        }
+        /* University Section Styling */
+        .university-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1rem;
+            gap: 1rem; /* Space between logo and text */
+        }
+        .university-logo {
+            width: 50px; /* Adjust logo size */
+            height: auto;
+        }
+        .university-text {
+            font-size: 0.9rem;
+            color: #555;
+            text-align: center;
+        }
+        /* Arabic RTL Styling */
+        body.arabic {
+            direction: rtl; /* Right-to-left text direction */
+            text-align: right; /* Align text to the right */
+        }
+        body.arabic .form-container {
+            text-align: right; /* Align form container content to the right */
+        }
+        body.arabic .university-section {
+            justify-content: flex-end; /* Align university section to the right */
+        }
+    </style>
+</head>
+<body>
+    <div class="flex justify-center items-center h-screen bg-gray-900 bg-opacity-75 relative">
+        <!-- Translation Section -->
+        <div class="translate-section">
+            <div class="translate-dropdown" onclick="toggleLanguageMenu(event)">
+                Translate: EN
+                <div id="language-menu" class="hidden absolute mt-2 bg-white border rounded shadow w-24">
+                    <div class="p-2 hover:bg-gray-100" onclick="changeLanguage('en')">English</div>
+                    <div class="p-2 hover:bg-gray-100" onclick="changeLanguage('fr')">Français</div>
+                    <div class="p-2 hover:bg-gray-100" onclick="changeLanguage('ar')">العربية</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white p-8 rounded-lg shadow-lg w-96 form-container">
+            <!-- Dove of Peace Logo -->
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Dove_of_peace.svg/1200px-Dove_of_peace.svg.png" alt="Dove of Peace" class="dove-logo">
+
+            <!-- New Paragraph Above the Form -->
+            <p class="welcome-text" id="welcome-text">
+                Welcome to our club UNEXT, Please fill out the form
+            </p>
+            <!-- Two Horizontal Lines -->
+            <hr class="separator-line">
+            <hr class="separator-line">
+
+            <h2 class="text-2xl font-bold text-left text-gray-800" id="header-title">Welcome to UNEXT.CLUB!</h2>
+            <p class="text-gray-600 mb-4" id="form-instruction">Please fill out the form below:</p>
+            <form id="contactForm">
+                <div class="mb-4">
+                    <label class="block text-gray-700" id="submission-label">Submission Number</label>
+                    <input type="text" id="submissionNumber" class="w-full p-2 border rounded-lg" disabled>
+                </div>
+                <fieldset>
+                    <legend class="text-gray-700 mb-2" id="personal-info-title">Personal Information</legend>
+                    <div class="mb-4">
+                        <label class="block text-gray-700" id="name-label" for="name">Name</label>
+                        <input type="text" id="name" class="w-full p-2 border rounded-lg" placeholder="Your Name" required aria-label="Enter your full name">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700" id="apogee-label" for="apogee">Apogee</label>
+                        <input type="text" id="apogee" class="w-full p-2 border rounded-lg" placeholder="Your Apogee" required aria-label="Enter your Apogee">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700" id="phone-label" for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="w-full p-2 border rounded-lg" placeholder="Your Phone Number" required aria-label="Enter your phone number">
+                    </div>
+                </fieldset>
+                <div class="mb-4">
+                    <label class="block text-gray-700" id="email-label" for="email">Email</label>
+                    <input type="email" id="email" class="w-full p-2 border rounded-lg" placeholder="Your Email" required aria-label="Enter your email">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700" id="message-label" for="message">Message</label>
+                    <textarea id="message" class="w-full p-2 border rounded-lg" placeholder="Your Message" required aria-label="Enter your message"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600" id="submit-button">Submit</button>
+                <button type="reset" class="w-full bg-red-500 text-white p-2 rounded-lg hover:bg-red-600 mt-4" id="reset-button">Reset</button>
+            </form>
+
+            <!-- University Section -->
+            <div class="university-section">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Logo_UAE_Tanger.svg/1200px-Logo_UAE_Tanger.svg.png" alt="University Logo" class="university-logo">
+                <p class="university-text">
+                    Abdelmalek Essaadi University of Tangier,<br>
+                    Faculty of Legal, Economic and Social Sciences
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                welcomeText: "Welcome to our club UNEXT, Please fill out the form",
+                headerTitle: "Welcome to UNEXT.CLUB!",
+                formInstruction: "Please fill out the form below:",
+                submissionLabel: "Submission Number",
+                personalInfoTitle: "Personal Information",
+                nameLabel: "Name",
+                apogeeLabel: "Apogee",
+                phoneLabel: "Phone Number",
+                emailLabel: "Email",
+                messageLabel: "Message",
+                submitButton: "Submit",
+                resetButton: "Reset",
+                universityText: "Abdelmalek Essaadi University of Tangier,<br>Faculty of Legal, Economic and Social Sciences",
+            },
+            fr: {
+                welcomeText: "Bienvenue dans notre club UNEXT, veuillez remplir le formulaire",
+                headerTitle: "Bienvenue sur UNEXT.CLUB !",
+                formInstruction: "Veuillez remplir le formulaire ci-dessous :",
+                submissionLabel: "Numéro de soumission",
+                personalInfoTitle: "Informations personnelles",
+                nameLabel: "Nom",
+                apogeeLabel: "Apogée",
+                phoneLabel: "Numéro de téléphone",
+                emailLabel: "E-mail",
+                messageLabel: "Message",
+                submitButton: "Soumettre",
+                resetButton: "Réinitialiser",
+                universityText: "Université Abdelmalek Essaadi de Tanger,<br>Faculté des Sciences Juridiques, Économiques et Sociales",
+            },
+            ar: {
+                welcomeText: "مرحبًا بكم في نادي UNEXT، يرجى ملء النموذج",
+                headerTitle: "مرحبًا بك في UNEXT.CLUB!",
+                formInstruction: "يرجى ملء النموذج أدناه:",
+                submissionLabel: "رقم الطلب",
+                personalInfoTitle: "المعلومات الشخصية",
+                nameLabel: "الاسم",
+                apogeeLabel: "أبوغي",
+                phoneLabel: "رقم الهاتف",
+                emailLabel: "البريد الإلكتروني",
+                messageLabel: "رسالة",
+                submitButton: "إرسال",
+                resetButton: "إعادة تعيين",
+                universityText: "جامعة عبد المالك السعدي طنجة,<br>كلية العلوم القانونية والاقتصادية والاجتماعية",
+            },
+        };
+
+        let currentLanguage = "en"; // Default language
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+
+            // Apply RTL styling for Arabic
+            if (lang === "ar") {
+                document.body.classList.add("arabic");
+            } else {
+                document.body.classList.remove("arabic");
+            }
+
+            const elements = {
+                welcomeText: document.querySelector(".welcome-text"),
+                headerTitle: document.getElementById("header-title"),
+                formInstruction: document.getElementById("form-instruction"),
+                submissionLabel: document.getElementById("submission-label"),
+                personalInfoTitle: document.getElementById("personal-info-title"),
+                nameLabel: document.getElementById("name-label"),
+                apogeeLabel: document.getElementById("apogee-label"),
+                phoneLabel: document.getElementById("phone-label"),
+                emailLabel: document.getElementById("email-label"),
+                messageLabel: document.getElementById("message-label"),
+                submitButton: document.getElementById("submit-button"),
+                resetButton: document.getElementById("reset-button"),
+                universityText: document.querySelector(".university-text"),
+            };
+
+            for (const key in elements) {
+                if (elements[key]) {
+                    elements[key].innerHTML = translations[lang][key];
+                }
+            }
+
+            // Update dropdown text
+            document.querySelector(".translate-dropdown").textContent = `Translate: ${lang.toUpperCase()}`;
+            toggleLanguageMenu();
+        }
+
+        function toggleLanguageMenu(event) {
+            const menu = document.getElementById("language-menu");
+            menu.classList.toggle("hidden");
+            event.stopPropagation();
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener("click", () => {
+            const menu = document.getElementById("language-menu");
+            if (!menu.classList.contains("hidden")) {
+                menu.classList.add("hidden");
+            }
+        });
+    </script>
+</body>
+</html>
